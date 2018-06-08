@@ -11,7 +11,8 @@ module.exports = {
   entry: './app-src/app.js', // Ponto de entrada da aplicação
   output: { // Saida do processamento
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'dist' // Sem essa configuração o bundle(criado na memória) é criado na raiz, deve ser feito isso para a app conseguir carregar, obs isso foi configurado <script src="dist/bundle.js"></script> - configuração para o webpack-dev-server
   },
   module: { // Cria regras dos loaders que são utilizados para criação
     rules: [
