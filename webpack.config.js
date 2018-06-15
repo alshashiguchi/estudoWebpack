@@ -1,7 +1,10 @@
 const path = require('path');
 const BabiliPlugin = require('babili-webpack-plugin');
+const extracTextPlugin = require('extract-text-webpack-plugin');
 
 let plugins = [];
+
+plugins.push(new extracTextPlugin('styles.css'));
 
 if (process.env.NODE_ENV === 'production') {
   plugins.push(new BabiliPlugin());
@@ -27,7 +30,12 @@ module.exports = {
       {
         // regras do css
         test: /\.css$/,
-        loader: 'style-loader!css-loader'// ! siginifica que será executado 2 loaders, lembrando que sempre executa da direita para a esquerda
+        // loader: 'style-loader!css-loader'// ! siginifica que será executado 2 loaders, lembrando que sempre executa da direita para a esquerda
+        // loader para separar o css do bundle gerado pra não ficar css e js misturado no mesmo arquivo
+        use: extracTextPlugin.extract({
+          fallback: 'style-loader', // caso falhe
+          use: 'css-loader' // deu certo
+        })
       },
       // regras para arquivos do bootstrap
       {

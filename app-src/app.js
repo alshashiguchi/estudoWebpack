@@ -11,11 +11,11 @@ headers.set('Content-Type', 'application/json');
 const body = JSON.stringify(negociacao);
 const method = 'POST';
 
-const config = { 
-    method,
-    headers,
-    body 
+const config = {
+  method,
+  headers,
+  body
 };
 
 fetch('http://localhost:3000/negociacoes', config)
-    .then(() => console.log('Dado enviado com sucesso'));
+  .then(() => console.log('Dado enviado com sucesso'));
