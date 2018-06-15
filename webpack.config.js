@@ -17,11 +17,34 @@ module.exports = {
   module: { // Cria regras dos loaders que são utilizados para criação
     rules: [
       {
+        // regras do js
         test: /\.js$/, // Essa chave utiliza expressão regular para saber as extensões que ela ira utilizar
         exclude: /node_modules/, // Arquivos que serão ignorados
         use: { // qual loader será utilizado.
           loader: 'babel-loader'
         }
+      },
+      {
+        // regras do css
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'// ! siginifica que será executado 2 loaders, lembrando que sempre executa da direita para a esquerda
+      },
+      // regras para arquivos do bootstrap
+      {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
       }
     ]
   },
