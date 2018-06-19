@@ -12,3 +12,4 @@
 .vscode
 .eslintcache
 package-lock.json
+/dist
