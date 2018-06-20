@@ -2,9 +2,11 @@ import { NegociacaoController } from './controllers/NegociacaoController.js';
 import { Negociacao } from './domain/index.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import 'jquery/dist/jquery.js';
 import 'bootstrap/js/modal.js';
 import '../css/meucss.css';
+
+$('h1').click(() => alert('Você me clicou'));
+console.log($('h1').modal);
 
 const controller = new NegociacaoController();
 const negociacao = new Negociacao(new Date(), 1, 200);

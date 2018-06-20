@@ -2,10 +2,17 @@ const path = require('path');
 const BabiliPlugin = require('babili-webpack-plugin');
 const extracTextPlugin = require('extract-text-webpack-plugin');
 const optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack');
 
 let plugins = [];
 
 plugins.push(new extracTextPlugin('styles.css'));
+
+plugins.push(new webpack.ProvidePlugin({
+  // vai carregar o jquery em uma variavel que é acessivel em cada modulo da aplicação, mas não esta em modo global.
+  '$': 'jquery/dist/jquery.js', //$ - alias do jquery
+  'jQuery': 'jquery/dist/jquery.js' // O nome da propriedade tem que ser igual ao que a aplicação está esperando
+}));
 
 if (process.env.NODE_ENV === 'production') {
   plugins.push(new BabiliPlugin());
