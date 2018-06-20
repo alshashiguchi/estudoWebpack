@@ -1,0 +1,3 @@
+webpack já vem com o ProvidePlugin que resolve a questão da disponibilidade de artefatos para outros módulos sem que haja a importação desses artefatos.
+ 
+Um caso clássico é a dependência do jQuery pelo script do Bootstrap. O script do Bootstrap não o importa com a instrução import (até porque ele não foi criado por nós), mas o procura no escopo global. Por mais que tentemos importar o jQuery com a instrução import antes do script do Bootstrap, o jQuery estará isolado em uma closure por ter sido tratado como um módulo e isso não permitirá que ele seja acessível por outros script que dependem dele.
