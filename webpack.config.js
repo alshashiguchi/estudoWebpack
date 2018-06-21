@@ -14,6 +14,13 @@ plugins.push(new webpack.ProvidePlugin({
   'jQuery': 'jquery/dist/jquery.js' // O nome da propriedade tem que ser igual ao que a aplicação está esperando
 }));
 
+plugins.push(new webpack.optimize.CommonsChunkPlugin({
+
+  name: 'vendor',
+  filename: 'vendor.bundle.js'
+
+}))
+
 if (process.env.NODE_ENV === 'production') {
   // faz com que o processamento ocorra mais rapidamente, diminiu a quantidade de closure (quanto mais closure mais trabalhoso)
   plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
@@ -32,7 +39,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  entry: './app-src/app.js', // Ponto de entrada da aplicação
+  entry: {
+    app: './app-src/app.js', // Ponto de entrada da aplicação
+    // vendor é exatamento o nome informado pelo identificador do CommonsChunkPlugin
+    vendor: ['jquery', 'bootstrap', 'reflect-metadata']
+  },
   output: { // Saida do processamento
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
