@@ -15,6 +15,9 @@ plugins.push(new webpack.ProvidePlugin({
 }));
 
 if (process.env.NODE_ENV === 'production') {
+  // faz com que o processamento ocorra mais rapidamente, diminiu a quantidade de closure (quanto mais closure mais trabalhoso)
+  plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+
   plugins.push(new BabiliPlugin());
 
   plugins.push(new optimizeCSSAssetsPlugin({
